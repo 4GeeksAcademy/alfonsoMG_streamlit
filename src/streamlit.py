@@ -1,19 +1,25 @@
+# Import necessary libraries
 import streamlit as st
-import pickle
 from pickle import load
 
 
-
+# Load the pre-trained machine learning model
 model = load(open("/workspaces/alfonsoMG_streamlit/models/decision_tree_optimized_model.pk", "rb"))
 
+
+# Set the title and description for the Streamlit app
 st.title("Diabetes -  Decision Tree Prediction")
 st.write("Using the sliders introduce the values above in order to know if you suffer form diabetes or not (according to my model).")
 
+
+# Define a dictionary to map model predictions to human-readable messages
 class_dict = {
     "0": "No, according to our model you don't suffer from diabetes.",
     "1": "Yes, I am sorry, it's highly probable that you suffer from diabetes, please go to a doctor."
 }
 
+
+# Create sliders for user input
 preg_val = st.slider(
                     "Number of Pregnancies",
                     min_value = 0,
@@ -69,7 +75,11 @@ age_val = st.slider(
                     step = 1
 )
 
+
+# Button to trigger the prediction
 if st.button("Predict"):
+
+    # Make a prediction using the model
     prediction = str(model.predict([[
                                     preg_val,
                                     glucose_val,
@@ -81,5 +91,9 @@ if st.button("Predict"):
                                     age_val
     ]])
     [0])
+
+    # Get the corresponding prediction message from the dictionary
     pred_val = class_dict[prediction]
+
+    # Display the prediction result
     st.write("Prediction:", pred_val)

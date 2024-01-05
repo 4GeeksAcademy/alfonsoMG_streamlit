@@ -14,7 +14,7 @@ st.write("Using the sliders introduce the values above in order to know if you s
 
 # Define a dictionary to map model predictions to human-readable messages
 class_dict = {
-    "0": "No, according to our model you don't suffer from diabetes.",
+    "0": "No, according to my model you don't suffer from diabetes.",
     "1": "Yes, I am sorry, it's highly probable that you suffer from diabetes, please go to a doctor."
 }
 
